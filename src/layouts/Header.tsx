@@ -1,37 +1,33 @@
-import { Fragment } from "react";
-import {
-  Bars3CenterLeftIcon,
-  ChevronDownIcon,
-  Cog8ToothIcon,
-  UserCircleIcon,
-} from "@heroicons/react/24/solid";
-import {
-  ArrowLeftOnRectangleIcon,
-  BellIcon,
-  CheckIcon,
-} from "@heroicons/react/24/outline";
-import { Menu, Transition, Popover } from "@headlessui/react";
-import Link from "next/link";
-import clsx from "clsx";
+import { Fragment } from 'react';
+import { Bars3CenterLeftIcon, ChevronDownIcon, Cog8ToothIcon, UserCircleIcon } from '@heroicons/react/24/solid';
+import { ArrowLeftOnRectangleIcon, BellIcon, CheckIcon } from '@heroicons/react/24/outline';
+import { Menu, Transition, Popover } from '@headlessui/react';
+import Link from 'next/link';
+import clsx from 'clsx';
 
-const Header = ({ isShowSidebar, setIsShowSidebar }) => {
+interface IProps {
+  isShowSidebar: boolean;
+  setIsShowSidebar: Function;
+}
+
+const Header = ({ isShowSidebar, setIsShowSidebar }: IProps) => {
   return (
     <div
       className={clsx(
-        "fixed w-full h-20 flex justify-between items-center transition-all duration-[500ms] bg-gray-100 text-white",
-        isShowSidebar && "pl-52"
+        'fixed w-full h-14 flex justify-between items-center transition-all duration-[500ms] bg-gray-100 text-white',
+        isShowSidebar && 'pl-52'
       )}
     >
-      <div className="pl-5 md:pl-10">
+      <div className="pl-5 md:pl-8">
         <Bars3CenterLeftIcon
-          className="h-8 w-8 text-gray-700 cursor-pointer"
+          className="h-6 w-6 text-gray-700 cursor-pointer"
           onClick={() => setIsShowSidebar(!isShowSidebar)}
         />
       </div>
       <div className="flex items-center pr-5 md:pr-10">
         <Popover className="relative">
           <Popover.Button className="outline-none mr-5 md:mr-10 cursor-pointer text-yellow-700">
-            <BellIcon className="h-8 w-8" />
+            <BellIcon className="h-6 w-6" />
           </Popover.Button>
           <Transition
             as={Fragment}
@@ -42,7 +38,7 @@ const Header = ({ isShowSidebar, setIsShowSidebar }) => {
             leaveFrom="transform scale-300"
             leaveTo="transform scale-95"
           >
-            <Popover.Panel className="absolute -right-20 sm:right-10 z-50 mt-1 bg-white shadow-sm rounded max-w-xs sm:max-w-sm w-screen">
+            <Popover.Panel className="absolute -right-20 sm:right-10 z-50 mt-1 bg-white shadow-md rounded max-w-xs sm:max-w-sm w-screen">
               <div className="relative p-3">
                 <div className="flex justify-between items-center w-full">
                   <p className="text-gray-700 font-medium">Notifications</p>
@@ -57,12 +53,8 @@ const Header = ({ isShowSidebar, setIsShowSidebar }) => {
                         <CheckIcon className="h-5 w-5 text-green-600" />
                       </div>
                       <div className="ml-4">
-                        <p className="font-medium text-gray-700">
-                          Notification {notification}
-                        </p>
-                        <p className="text-sm text-gray-500 truncate">
-                          Test Notification {notification} text ...
-                        </p>
+                        <p className="font-medium text-gray-700">Notification {notification}</p>
+                        <p className="text-sm text-gray-500 truncate">Test Notification {notification} text ...</p>
                       </div>
                     </div>
                   ))}
@@ -77,13 +69,11 @@ const Header = ({ isShowSidebar, setIsShowSidebar }) => {
               <picture>
                 <img
                   src="/avatar.png"
-                  className="rounded-full h-8 md:mr-4 border-2 border-white shadow-sm"
+                  className="rounded-full h-8 md:mr-4 border-2 border-white shadow-md"
                   alt="avatar"
                 />
               </picture>
-              <span className="hidden md:block font-medium text-gray-700">
-                LuKm@n
-              </span>
+              <span className="hidden md:block font-medium text-gray-700">LuKm@n</span>
               <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-700" />
             </Menu.Button>
           </div>
@@ -96,7 +86,7 @@ const Header = ({ isShowSidebar, setIsShowSidebar }) => {
             leaveFrom="transform scale-300"
             leaveTo="transform scale-95"
           >
-            <Menu.Items className="absolute right-0 w-52 z-50 mt-2 origin-top-right bg-white rounded shadow-sm">
+            <Menu.Items className="absolute right-0 w-52 z-50 mt-1 origin-top-right bg-white rounded shadow-md">
               <div className="p-1">
                 <Menu.Item>
                   <Link
@@ -134,5 +124,5 @@ const Header = ({ isShowSidebar, setIsShowSidebar }) => {
   );
 };
 
-Header.displayName = "Header";
+Header.displayName = 'Header';
 export default Header;
